@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, width=device-width">
+<title>✔</title>
+
+<style>
+
+html, body {
+    height: 100%
+  }
+  body {
+    display: grid;
+    grid: 84px / 64px;
+    place-content: center;
+    margin: 0;
+    background: #0F1323
+  }
+html, body {
+    height: 100%
+  }
+  body {
+    display: grid;
+    grid: 84px / 64px;
+    place-content: center;
+    margin: 0;
+    background: #0F1323
+  }
+  body::before {
+    content: "";
+    background: url(https://i.postimg.cc/NG4PrtMr/teste2.png) 0 0 / 960px 504px;
+    animation: bounce .48s 2.12s,
+               row1 .28s steps(14) 1s,
+               row2 .28s steps(14) 1.28s,
+               row3 .28s steps(14) 1.56s,
+               row4 .28s steps(14) 1.84s,
+               row5 .28s steps(14) 2.12s,
+               row6 .20s steps(10) 2.4s forwards
+  }
+  @keyframes bounce {
+     50% { transform: translateY(1px) }
+  }
+  @keyframes row1 {
+    100% { background-position: -896px 0 }
+  }
+  @keyframes row2 {
+      0% { background-position: 0 -84px }
+    100% { background-position: -896px -84px }
+  }
+  @keyframes row3 {
+      0% { background-position: 0 -168px }
+    100% { background-position: -896px -168px }
+  }
+  @keyframes row4 {
+      0% { background-position: 0 -252px }
+    100% { background-position: -896px -252px }
+  }
+  @keyframes row5 {
+      0% { background-position: 0 -336px }
+    100% { background-position: -896px -336px }
+  }
+  @keyframes row6 {
+      0% { background-position: 0 -420px }
+    100% { background-position: -640px -420px }
+  }
+
+  </style>

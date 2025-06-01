@@ -1,0 +1,639 @@
+<!DOCTYPE JBS>
+<JBS lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Css/style.Css">
+    <link rel="stylesheet" href="Js/Eventos.js">
+
+    <link rel="shortcut icon" href="https://i.postimg.cc/XvZmZXGf/favicon.png" type="image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+
+
+<STYle>
+.cookie-container {
+  display: flex; /* ou block, conforme seu layout */
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease, transform 0.7s ease;
+}
+
+.cookie-container.hide {
+  opacity: 0;
+  transform: translateY(40px);
+  pointer-events: none; /* evita cliques enquanto esconde */
+}
+
+
+</STYle>
+<body id="top">
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="Imagens/LogoChamae.png" alt="Logo Chamae" width="200">
+              </a>
+              
+              
+              
+              
+            <div class="navbar-wrapper">
+                <button class="navbar-menu-btn" data-navbar-toggle-btn><ion-icon name="menu-outline"></ion-icon></button>
+
+                <nav class="navbar " data-navbar>
+                    <ul class="navbar-list">
+                        <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                        <li class="nav-item"><a href="#about" class="nav-link">O que fazemos </a></li>
+                        <li class="nav-item"><a href="#features" class="nav-link">Por que nós?</a></li>
+                        <li class="nav-item"><a href="#about" class="nav-link">Nosso trabalho</a></li>
+                        <li class="nav-item"><a href="equipe.html" class="nav-link">Nossa equipe</a></li>
+                        <!-- <li class="nav-item"><a href="#contact" class="nav-link">Contato</a></li> -->
+                    </ul>
+
+                    <a href="#contact" class="btn btn-primary">Entre em contato</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <article>
+            <section class="hero" id="home">
+                <div class="container">
+                    <div class="hero-content">
+                        <h1 class="h1 hero-title">Suporte inteligente? Só Chamaê que a gente resolve!</h1>
+
+                        <p class="hero-text">Acesse e gerencie seus chamados em vários dispositivos para manter o controle e a organização no trabalho, em casa ou em movimento.</p>
+
+                        <a href="#contact" class="custom-button">Começar</a>
+
+                    </div>
+                    <div class="hero-banner"></div>
+                </div>
+
+
+
+            </section>
+
+
+            <!-- <section class="aboutVideo" id="about">
+                <div class="container">
+                    <div class="about-top">
+
+                            <div class="video-container">
+                                <div class="video-wrapper">
+                                    <video controls>
+                                        <source src="Videos/ApresentaçãoSofia.mov" type="video/mp4">
+                                        Seu navegador não suporta o elemento de vídeo.
+                                    </video>
+                                </div>
+                            </div>
+                            
+                           
+                    </div>
+                </div>
+            </section> -->
+
+            
+            <section class="about" id="about">
+                <div class="container">
+                    <div class="about-top">
+
+                            <!-- **************************************************************
+                            INICIO DO video
+                            ************************************************************** -->
+                            <div class="video-container">
+    <div class="video-wrapper">
+        <iframe width="815" height="500" 
+                src="https://www.youtube.com/embed/Jxn3aoSRoGc" 
+                title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+        </iframe>
+    </div>
+</div>
+
+
+                            
+                            <!-- **************************************************************
+                            FIM DO video
+                            ************************************************************** -->
+
+                        <h2 class="h2 section-title">O que fazemos</h2>
+
+                        <p class="section-text">Somos uma empresa de tecnologia focada em facilitar o atendimento e a organização das empresas. Oferecemos um sistema moderno de suporte de chamados, ideal para negócios que ainda não possuem uma solução integrada.
+                            Com nossa plataforma, sua equipe consegue registrar, acompanhar e resolver problemas de forma simples, rápida e eficiente.</p>
+
+                        <ul class="about-list">
+                            <li>
+                                <div class="about-card">
+                                    <div class="card-icon"><ion-icon name="briefcase-outline"></ion-icon></div>
+
+                                    <h3 class="h3 card-title">Gerenciamento de Chamados e Atendimento Multicanal</h3>
+
+                                    <p class="card-text">Ajude sua empresa a melhorar a visibilidade interna e a alcançar os setores certos com B3 e eficiência.</p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="about-card">
+                                    <div class="card-icon"><ion-icon name="chatbubbles-outline"></ion-icon></div>
+
+                                    <h3 class="h3 card-title">Respostas Rápidas e Diretas aos Chamados</h3>
+
+                                    <p class="card-text">Estimule ações imediatas e resoluções ágeis, otimizando o fluxo de atendimento de chamados.</p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="about-card">
+                                    <div class="card-icon"><ion-icon name="rocket-outline"></ion-icon></div>
+
+                                    <h3 class="h3 card-title"><abbr title="Conversion Rate Optimization">IA:</abbr> Inovação em Atendimento: Otimize a Resolução e Retenção de Chamados</h3>
+
+                                    <p class="card-text">Com IA, seu sistema de chamados se torna mais eficiente, resolvendo problemas rapidamente e mantendo a base de clientes fiel.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="about-bottom">
+                        <figure class="about-bottom-banner">
+                            <img src="https://i.postimg.cc/xTBTTH05/about-banner.png" alt="about banner" class="about-banner">
+                        </figure>
+
+                        <div class="about-bottom-content">
+                            <h2 class="h2 section-title">Somos obcecados pelo crescimento</h2>
+
+                            <p class="section-text">Sempre que um chamado é aberto ou encerrado, uma porcentagem dos recursos processados pode ser automaticamente redirecionada para iniciativas de melhoria contínua no sistema de atendimento.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="features" id="features">
+                <div class="container">
+                    <ul class="features-list">
+                        <li class="features-item">
+                            <figure class="features-item-banner"><img src="https://i.postimg.cc/mZKXzCP8/feature-1.png" alt="feature banner"></figure>
+
+                            <div class="feature-item-content">
+                                <h3 class="h2 item-title">Otimize a gestão de seus chamados </h3>
+
+                                <p class="item-text">Custos operacionais no suporte podem crescer rapidamente. Por isso, é fundamental ter um sistema bem planejado para gerenciar e otimizar seus chamados com eficiência.</p>
+                            </div>
+                        </li>
+
+                        <li class="features-item">
+                            <figure class="features-item-banner"><img src="https://i.postimg.cc/4N5ckTRV/feature-2.png" alt="feature banner"></figure>
+
+                            <div class="feature-item-content">
+                                <h3 class="h2 item-title">Empresas que já contam com a gente</h3>
+
+                                <div class="tag-list">
+                                    <div class="loop-slider" style="--duration:15951ms; --direction:normal;">
+                                    <div class="inner">
+                                        <div class="tag"><span>#</span> Mercado Livre</div>
+                                        <div class="tag"><span>#</span> Ifood</div>
+                                        <div class="tag"><span>#</span> HAVAN</div>
+                                        <div class="tag"><span>#</span> VALE</div>
+                                        <div class="tag"><span>#</span> UNIP</div>
+                                        <!-- duplicated content -->
+                                        <div class="tag"><span>#</span> Mercado Livre</div>
+                                        <div class="tag"><span>#</span> Ifood</div>
+                                        <div class="tag"><span>#</span> HAVAN</div>
+                                        <div class="tag"><span>#</span> VALE</div>
+                                        <div class="tag"><span>#</span> UNIP</div>
+                                    </div>
+                                    </div>
+                                    <div class="loop-slider" style="--duration:19260ms; --direction:reverse;">
+                                    <div class="inner">
+                                        <div class="tag"><span>#</span> Ifood</div>
+                                        <div class="tag"><span>#</span> COSAN</div>
+                                        <div class="tag"><span>#</span> Mercado Livre</div>
+                                        <div class="tag"><span>#</span> B3</div>
+                                        <div class="tag"><span>#</span> HAVAN</div>
+                                        <!-- duplicated content -->
+                                        <div class="tag"><span>#</span> Ifood</div>
+                                        <div class="tag"><span>#</span> COSAN</div>
+                                        <div class="tag"><span>#</span> Mercado Livre</div>
+                                        <div class="tag"><span>#</span> B3</div>
+                                        <div class="tag"><span>#</span> HAVAN</div>
+                                    </div>
+                                    </div>
+                                    <div class="loop-slider" style="--duration:10449ms; --direction:normal;">
+                                    <div class="inner">
+                                        <div class="tag"><span>#</span> SANTANDER</div>
+                                        <div class="tag"><span>#</span> B3</div>
+                                        <div class="tag"><span>#</span> PARCERIA</div>
+                                        <div class="tag"><span>#</span> CONFIANÇA</div>
+                                        <div class="tag"><span>#</span> JBS</div>
+                                        <!-- duplicated content -->
+                                        <div class="tag"><span>#</span> SANTANDER</div>
+                                        <div class="tag"><span>#</span> B3</div>
+                                        <div class="tag"><span>#</span> PARCERIA</div>
+                                        <div class="tag"><span>#</span> CONFIANÇA</div>
+                                        <div class="tag"><span>#</span> JBS</div>
+                                    </div>
+                                    </div>
+                                    <div class="loop-slider" style="--duration:16638ms; --direction:reverse;">
+                                    <div class="inner">
+                                        <div class="tag"><span>#</span> COSAN</div>
+                                        <div class="tag"><span>#</span> JBS</div>
+                                        <div class="tag"><span>#</span> CSS</div>
+                                        <div class="tag"><span>#</span> PARCERIA</div>
+                                        <div class="tag"><span>#</span> VALE</div>
+                                        <!-- duplicated content -->
+                                        <div class="tag"><span>#</span> COSAN</div>
+                                        <div class="tag"><span>#</span> JBS</div>
+                                        <div class="tag"><span>#</span> CSS</div>
+                                        <div class="tag"><span>#</span> PARCERIA</div>
+                                        <div class="tag"><span>#</span> VALE</div>
+                                    </div>
+                                    </div>
+                                    <div class="loop-slider" style="--duration:15936ms; --direction:normal;">
+                                    <div class="inner">
+                                        <div class="tag"><span>#</span> VALE</div>
+                                        <div class="tag"><span>#</span> PARCERIA</div>
+                                        <div class="tag"><span>#</span> Ifood</div>
+                                        <div class="tag"><span>#</span> HAVAN</div>
+                                        <div class="tag"><span>#</span> COSAN</div>
+                                        <!-- duplicated content -->
+                                        <div class="tag"><span>#</span> VALE</div>
+                                        <div class="tag"><span>#</span> PARCERIA</div>
+                                        <div class="tag"><span>#</span> Ifood</div>
+                                        <div class="tag"><span>#</span> HAVAN</div>
+                                        <div class="tag"><span>#</span> COSAN</div>
+                                    </div>
+                                    </div>
+                                    <div class="fade"></div>
+                                </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="contact" id="contact">
+                <div class="container">
+                    <div class="contact-content">
+                        <h2 class="h2 contact-title">Vamos aprimorar a eficiência do seu suporte técnico</h2>
+
+                        <figure class="contact-banner"><img src="https://i.postimg.cc/25W7hXg6/contact.png" alt="contact banner"></figure>
+                    </div>
+
+                    <form action="" class="contact-form">
+
+                        <div class="input-wrapper">
+                            <label for="name" class="input-label">Nome</label>
+                            <input type="text" name="name" id="name" required placeholder="Inserir Nome" class="input-field">
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="phone" class="input-label">Celular</label>
+                            <input type="tel" name="phone" id="phone" required placeholder="Inserir Telefone/Celular" class="input-field">
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="email" class="input-label">Email</label>
+                            <input type="email" name="email" id="email" required placeholder="Inserir Email" class="input-field">
+                        </div>
+
+                        <div class="input-wrapper">
+                            <label for="message" class="input-label">Como podemos ajudar?</label>
+                            <textarea name="message" id="message" placeholder="Inserir Descrição" class="input-field" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+                    </form>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-brand">
+                    <a href="#" class="logo"> <img src="Imagens/LogoChamae.png" alt="Logo Chamae" width="200"> <alt="Funel logo"></a>
+                            
+                     <p class="footer-text">Siga-nos em</p>
+
+                    <ul class="social-list">
+                        <li><a href="https://github.com/Return-Gabriel" class="social-link"><ion-icon name="logo-github"></ion-icon></a></li>
+                        <li><a href="https://instagram.com/_galvvesz" class="social-link"><ion-icon name="logo-instagram"></ion-icon></a></li>
+                        <li><a href="https://youtube.com/c/alvesgamer" class="social-link"><ion-icon name="logo-youtube"></ion-icon></a></li>
+                        <li><a href="#" class="social-link"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-link-box">
+                    <ul class="footer-link-list">
+                        <li><h3 class="h4 link-title">Empresa</h3></li>
+                        <li><a href="#" class="footer-link">Sobre nós</a></li>
+                        <li><a href="#" class="footer-link">Características</a></li>
+                        <li><a href="#" class="footer-link">Preços</a></li>
+                    </ul>
+
+                    <ul class="footer-link-list">
+                        <li><h3 class="h4 link-title">Produtos</h3></li>
+                        <li><a href="#" class="footer-link">Blogue</a></li>
+                        <li><a href="#" class="footer-link">Central de Ajuda</a></li>
+                        <li><a href="#" class="footer-link">Contato</a></li>
+                    </ul>
+
+                    <ul class="footer-link-list">
+                        <li><h3 class="h4 link-title">Recursos</h3></li>
+                        <li><a href="#" class="footer-link">Perguntas frequentes</a></li>
+                        <li><a href="#" class="footer-link">Depoimento</a></li>
+                        <li><a href="#" class="footer-link">Termos e Condições</a></li>
+                    </ul>
+
+                    <ul class="footer-link-list">
+                        <li><h3 class="h4 link-title">Relevante</h3></li>
+                        <li><a href="#" class="footer-link">Produtos</a></li>
+                        <li><a href="#" class="footer-link">Clientes</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p class="copyright">&copy; 2025 GS CODE Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <!-- <a href="#top" class="go-top active" data-go-top><ion-icon name="chevron-up-outline"></ion-icon></a>
+ -->
+
+    <!-- <a href="#top" class="go-top active" data-go-top><ion-icon name="chevron-up-outline"></ion-icon></a> -->
+    <!-- Botão flutuante do chat -->
+<!-- BOTÃO FLUTUANTE -->
+<div id="chat-button-container" aria-label="Abrir chat com atendente virtual">
+  <div id="chat-avatar">
+    <img src="Imagens/DUVIDA.png" alt="Atendente Virtual" id="chat-avatar-img">
+    <div id="chat-tooltip">
+      Olá, Sou a Sofia,<br>como posso te ajudar?
+    </div>
+  </div>
+</div>
+
+<!-- JANELA DO CHAT -->
+<div id="chatBox" class="chatbox" style="display: none;">
+  <div class="chat-header" role="banner">
+  <img src="Imagens/DUVIDA.png" alt="Avatar da atendente" class="chat-avatar-img">
+  <strong class="chat-name">Sofia (Assistente Virtual)</strong>
+  <button id="btnFecharChat" aria-label="Fechar chat" class="close-chat-btn">×</button>
+</div>
+  <div class="chat-body" aria-live="polite"></div>
+  <div class="chat-footer">
+    <input type="text" class="message-input" placeholder="Digite aqui..." aria-label="Digite sua mensagem">
+    <button class="message-submit" aria-label="Enviar mensagem">Enviar</button>
+  </div>
+  <!-- ÍCONES DE ACESSIBILIDADE -->
+  <!-- <div class="accessibility-buttons">
+    <button aria-label="Modo Surdo" title="Modo Surdo">🦻</button>
+    <button aria-label="Modo Mudo" title="Modo Mudo">🤐</button>
+    <button aria-label="Modo Cego" title="Modo Cego">👁️‍🗨️</button>
+  </div> -->
+</div>
+
+<!-- VLibras Plugin de Acessibilidade -->
+<div vw class="enabled">
+  <div vw-access-button class="active"></div>
+  <div vw-plugin-wrapper>
+    <div class="vw-plugin-top-wrapper"></div>
+  </div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
+  new window.VLibras.Widget('https://vlibras.gov.br/app');
+</script>
+
+
+<div class="cookie-container">
+  <img src="Imagens/bravona.png" alt="Policial" class="policial-img">
+  <div id="cookie-banner" class="cookie-banner">
+    <div class="cookie-content">
+      <p>
+        <strong style="font-size: 15px;">Utilizamos Cookies:</strong> 
+        Usamos cookies para melhorar a sua experiência e segurança em nosso website.
+        <br>
+      </p>
+      <div class="cookie-buttons">
+        <button id="accept-cookies">Aceitar</button>
+        <button id="deny-cookies">Negar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- jQuery e Script do Chat -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
+<script>
+    window.addEventListener('load', () => {
+  new window.VLibras.Widget('https://vlibras.gov.br/app');
+});
+  var $messages, etapa = 0, nomeUsuario = '';
+
+
+  
+$(document).ready(function () {
+  const $chatBox = $('#chatBox');
+  const $chatBody = $('.chat-body');
+
+  // Hover no avatar mostra o balão
+  $('#chat-avatar').hover(function () {
+    $('#chat-tooltip').fadeIn();
+  }, function () {
+    $('#chat-tooltip').fadeOut();
+  });
+
+  // Abrir chat
+  $('#chat-avatar').click(() => {
+    $chatBox.fadeIn();
+    $('#chat-button-container').fadeOut();
+    iniciarChat();
+  });
+
+  // Fechar chat e limpar mensagens
+  $('#btnFecharChat').click(() => {
+    $chatBox.fadeOut();
+    $('#chat-button-container').fadeIn();
+    $('.chat-body').empty();
+  });
+
+  // Enviar mensagem
+  $('.message-submit').click(insertMessage);
+  $(window).on('keydown', function (e) {
+    if (e.which == 13) insertMessage();
+  });
+
+  function insertMessage() {
+    const msg = $('.message-input').val().trim();
+    if (!msg) return;
+    addMessage(msg, 'user');
+    $('.message-input').val('');
+
+    if (etapa === 1) {
+      setTimeout(() => {
+        addMessage("Legal! Qual o seu nome?");
+        etapa = 2;
+      }, 1000);
+
+    } else if (etapa === 2) {
+      nomeUsuario = msg;
+      setTimeout(() => {
+        addMessage(`Prazer, ${nomeUsuario}! Escolha uma das opções abaixo:`);
+        mostrarOpcoesPrincipais();
+        etapa = 3;
+      }, 1000);
+
+    } else if (etapa === 4) {
+      setTimeout(() => {
+        addMessage(`Poxa, ${nomeUsuario}, infelizmente não será possível te ajudar com esse assunto agora.`);
+        setTimeout(() => {
+          addMessage("Agradecemos seu contato! Foi um prazer falar com você. Abraços 🤗");
+        }, 1500);
+      }, 1000);
+    }
+  }
+
+  function addMessage(content, who = 'bot') {
+  const div = $('<div>').addClass(`message ${who}`);
+
+  // Se o conteúdo parecer HTML (ex: contém uma tag <button>), usamos html(), senão usamos text()
+  if (/<[a-z][\s\S]*>/i.test(content)) {
+    div.html(content);
+  } else {
+    div.text(content);
+  }
+
+  $chatBody.append(div);
+  $chatBody.scrollTop($chatBody[0].scrollHeight);
+}
+
+
+  function iniciarChat() {
+    setTimeout(() => {
+      addMessage("Olá! Eu sou a Sofia 🤖");
+      setTimeout(() => {
+        addMessage("Como posso te ajudar hoje?");
+        etapa = 1;
+      }, 1000);
+    }, 500);
+  }
+
+  function mostrarOpcoesPrincipais() {
+    const html = `
+      <div style="display: flex; flex-direction: column; gap: 5px;">
+        <button onclick="escolherOpcaoPrincipal(1)" style="padding: 8px; background: #2ecc71; color: white; border: none; border-radius: 5px;">1 - Dúvida sobre sistema</button>
+        <button onclick="escolherOpcaoPrincipal(2)" style="padding: 8px; background: #3498db; color: white; border: none; border-radius: 5px;">2 - Falar com comercial</button>
+        <button onclick="escolherOpcaoPrincipal(3)" style="padding: 8px; background: #e67e22; color: white; border: none; border-radius: 5px;">3 - Outros</button>
+      </div>
+    `;
+    $chatBody.append(`<div class="message bot">${html}</div>`);
+    $chatBody.scrollTop($chatBody[0].scrollHeight);
+  }
+
+  window.escolherOpcaoPrincipal = function (opcao) {
+    if (opcao === 1) {
+      addMessage("1 - Dúvida sobre sistema", "user");
+      setTimeout(() => {
+        const html = `
+          <div style="display: flex; flex-direction: column; gap: 5px;">
+            <button onclick="responderSistema(1)" style="padding: 8px; background: #1abc9c; color: white; border: none; border-radius: 5px;">1 - Sobre o sistema</button>
+            <button onclick="responderSistema(2)" style="padding: 8px; background: #9b59b6; color: white; border: none; border-radius: 5px;">2 - Plataformas disponíveis</button>
+          </div>
+        `;
+        addMessage(html, "bot");
+      }, 800);
+
+    } else if (opcao === 2) {
+      addMessage("2 - Falar com comercial", "user");
+      setTimeout(() => {
+        const html = `
+          <div style="display: flex; flex-direction: column; gap: 5px;">
+            <button onclick="responderComercial(1)" style="padding: 8px; background: #16a085; color: white; border: none; border-radius: 5px;">1 - Falar com um atendente</button>
+            <button onclick="responderComercial(2)" style="padding: 8px; background: #2980b9; color: white; border: none; border-radius: 5px;">2 - Seguir com atendimento Sofia</button>
+          </div>
+        `;
+        addMessage(html, "bot");
+      }, 800);
+
+    } else if (opcao === 3) {
+      addMessage("3 - Outros", "user");
+      setTimeout(() => {
+        addMessage(`Tudo bem, ${nomeUsuario}, qual assunto você gostaria de saber?`);
+        etapa = 4;
+      }, 800);
+    }
+  }
+
+  window.responderSistema = function (opcao) {
+    if (opcao === 1) {
+      addMessage("1 - Sobre o sistema", "user");
+      setTimeout(() => {
+        addMessage("Somos uma empresa focada na gestão de chamados que facilita muito a vida dos trabalhadores e aumenta a produtividade.");
+      }, 800);
+    } else if (opcao === 2) {
+      addMessage("2 - Plataformas disponíveis", "user");
+      setTimeout(() => {
+        addMessage("Nossa empresa fornece sistemas mobile, desktop e web.");
+      }, 800);
+    }
+  }
+
+  window.responderComercial = function (opcao) {
+    if (opcao === 1) {
+      addMessage("1 - Falar com um atendente", "user");
+      setTimeout(() => {
+        addMessage("Em breve um atendente humano entrará em contato com você, aguarde um momento.");
+      }, 800);
+    } else if (opcao === 2) {
+      addMessage("2 - Seguir com atendimento Sofia", "user");
+      setTimeout(() => {
+        addMessage(`Perfeito, ${nomeUsuario}, vamos continuar! 😊`);
+      }, 800);
+    }
+  }
+
+});
+
+// ***********************************************************************
+//                 INICIO DO POPUP
+// ***********************************************************************
+
+
+  // Exibe sempre que carregar
+  const cookieContainer = document.querySelector('.cookie-container');
+  cookieContainer.style.display = 'flex';
+
+  function hideCookieContainer() {
+    cookieContainer.classList.add('hide');
+    setTimeout(() => {
+      cookieContainer.style.display = 'none';
+    }, 500); // Tempo igual ao transition no CSS
+  }
+
+  document.getElementById('accept-cookies').addEventListener('click', hideCookieContainer);
+  document.getElementById('deny-cookies').addEventListener('click', hideCookieContainer);
+
+
+
+// ***********************************************************************
+//                  FIM DO POPUP
+// ***********************************************************************
+
+
+</script>
+
+</JBS>

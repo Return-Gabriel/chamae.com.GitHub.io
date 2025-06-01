@@ -1,0 +1,1403 @@
+<!DOCTYPE JBS>
+<JBS lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="Css/style.Css">
+        <link rel="stylesheet" href="Js/Eventos.js">
+
+        <link rel="shortcut icon" href="https://i.postimg.cc/XvZmZXGf/favicon.png" type="image">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+            rel="stylesheet">
+
+    </head>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+        }
+
+        .about-title {
+            font-size: 7.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            position: absolute;
+            top: 45px;
+            left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+            white-space: nowrap;
+            font-family: "Arial Black", "Arial Bold", Arial, sans-serif;
+            background: linear-gradient(to bottom,
+                    rgba(39, 169, 230, 0.35) 30%,
+                    rgba(27, 89, 180, 0) 76%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .carousel-container {
+            width: 100%;
+            max-width: 1200px;
+            height: 450px;
+            position: relative;
+            perspective: 1000px;
+            margin-top: 80px;
+        }
+
+        .carousel-track {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .card {
+            position: absolute;
+            width: 280px;
+            height: 380px;
+            background: rgb(255, 255, 255);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .card.center {
+            z-index: 10;
+            transform: scale(1.1) translateZ(0);
+        }
+
+        .card.center img {
+            filter: none;
+        }
+
+        .card.left-2 {
+            z-index: 1;
+            transform: translateX(-400px) scale(0.8) translateZ(-300px);
+            opacity: 0.7;
+        }
+
+        .card.left-2 img {
+            filter: grayscale(100%);
+        }
+
+        .card.left-1 {
+            z-index: 5;
+            transform: translateX(-200px) scale(0.9) translateZ(-100px);
+            opacity: 0.9;
+        }
+
+        .card.left-1 img {
+            filter: grayscale(100%);
+        }
+
+        .card.right-1 {
+            z-index: 5;
+            transform: translateX(200px) scale(0.9) translateZ(-100px);
+            opacity: 0.9;
+        }
+
+        .card.right-1 img {
+            filter: grayscale(100%);
+        }
+
+        .card.right-2 {
+            z-index: 1;
+            transform: translateX(400px) scale(0.8) translateZ(-300px);
+            opacity: 0.7;
+        }
+
+        .card.right-2 img {
+            filter: grayscale(100%);
+        }
+
+        .card.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .member-info {
+            text-align: center;
+            margin-top: 40px;
+            transition: all 0.5s ease-out;
+        }
+
+        .member-name {
+            color: rgb(8, 42, 123);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .member-name::before,
+        .member-name::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            width: 100px;
+            height: 2px;
+            background: rgb(8, 42, 123);
+        }
+
+        .member-name::before {
+            left: -120px;
+        }
+
+        .member-name::after {
+            right: -120px;
+        }
+
+        .member-role {
+            color: #848696;
+            font-size: 1.5rem;
+            font-weight: 500;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 10px 0;
+            margin-top: -15px;
+            position: relative;
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 60px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(8, 42, 123, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: rgb(8, 42, 123);
+            transform: scale(1.2);
+        }
+
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(8, 42, 123, 0.6);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 20;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            border: none;
+            outline: none;
+            padding-bottom: 4px;
+        }
+
+        .nav-arrow:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .nav-arrow.left {
+            left: 20px;
+            padding-right: 3px;
+        }
+
+        .nav-arrow.right {
+            right: 20px;
+            padding-left: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .about-title {
+                font-size: 4.5rem;
+            }
+
+            .card {
+                width: 200px;
+                height: 280px;
+            }
+
+            .card.left-2 {
+                transform: translateX(-250px) scale(0.8) translateZ(-300px);
+            }
+
+            .card.left-1 {
+                transform: translateX(-120px) scale(0.9) translateZ(-100px);
+            }
+
+            .card.right-1 {
+                transform: translateX(120px) scale(0.9) translateZ(-100px);
+            }
+
+            .card.right-2 {
+                transform: translateX(250px) scale(0.8) translateZ(-300px);
+            }
+
+            .member-name {
+                font-size: 2rem;
+            }
+
+            .member-role {
+                font-size: 1.2rem;
+            }
+
+            .member-name::before,
+            .member-name::after {
+                width: 50px;
+            }
+
+            .member-name::before {
+                left: -70px;
+            }
+
+            .member-name::after {
+                right: -70px;
+            }
+        }
+
+        /*SOBRE A EQUIPE*/
+        /* Estrutura geral da seção */
+        .section {
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .section-title {
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            position: relative;
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* Sistema de grid */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+
+        .padd-15 {
+            padding: 15px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        /* Texto do 'Sobre' */
+        .about-text h3 {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .about-text h3 span {
+            color: #3498db;
+            /* Cor de destaque */
+        }
+
+        .about-text p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* Informações pessoais */
+        .personal-info .info-item {
+            width: 50%;
+            margin-bottom: 10px;
+        }
+
+        .personal-info p {
+            font-size: 15px;
+            color: #333;
+        }
+
+        .personal-info span {
+            color: #777;
+            font-weight: 500;
+        }
+
+        /* Habilidades (skills) */
+        .skills .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-item h5 {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .progress {
+            background-color: #e0e0e0;
+            border-radius: 4px;
+            overflow: hidden;
+            height: 20px;
+            position: relative;
+        }
+
+        .progress-in {
+            height: 100%;
+            background-color: #3498db;
+            width: 0;
+            transition: width 0.6s ease;
+        }
+
+        .skill-percent {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            color: #000;
+            font-weight: bold;
+            z-index: 2;
+            /* para ficar sobre a barra */
+        }
+
+        .info-member {
+            display: none;
+        }
+    </style>
+
+    <body id="top">
+
+        <header>
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <img src="Imagens/LogoChamae.png" alt="Logo Chamae" width="200">
+                </a>
+
+                <div class="navbar-wrapper">
+                    <!-- Botão menu responsivo -->
+                    <button class="navbar-menu-btn" data-navbar-toggle-btn aria-label="Abrir menu">
+                        <ion-icon name="menu-outline"></ion-icon>
+                    </button>
+
+                    <!-- Navegação -->
+                    <nav class="navbar" data-navbar>
+                        <ul class="navbar-list">
+                            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                        
+                        </ul>
+
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main>
+
+            <h1 class="about-title">CREATORS</h1>
+            <div class="carousel-container">
+                <button class="nav-arrow left">‹</button>
+                <div class="carousel-track">
+                    <div class="card" data-index="0">
+                        <img src="Imagens/Gabrieljpg.jpg" alt="Team Member 1">
+                    </div>
+                    <div class="card" data-index="1">
+                        <img src="Imagens/Anthony.jpg" alt="Team Member 2">
+                    </div>
+                    <div class="card" data-index="2">
+                        <img src="Imagens/Jonathan.jpg" alt="Team Member 3">
+                    </div>
+                    <div class="card" data-index="3">
+                        <img src="Imagens/Petherson.jpg" alt="Team Member 4">
+                    </div>
+                    <div class="card" data-index="4">
+                        <img src="Imagens/BrunnoVianna.jpg" alt="Team Member 5">
+                    </div>
+                    <div class="card" data-index="5">
+                        <img src="Imagens/Guilherme.jpg" alt="Team Member 6">
+                    </div>
+                </div>
+                <button class="nav-arrow right">›</button>
+            </div>
+
+            <div class="member-info">
+                <h2 class="member-name">David Kim</h2>
+                <p class="member-role">Founder</p>
+            </div>
+
+            <div class="dots">
+                <div class="dot active" data-index="0"></div>
+                <div class="dot" data-index="1"></div>
+                <div class="dot" data-index="2"></div>
+                <div class="dot" data-index="3"></div>
+                <div class="dot" data-index="4"></div>
+                <div class="dot" data-index="5"></div>
+            </div>
+
+
+        </main>
+        <div class="Gabriel info-member">
+            <section class="" id="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2>Sobre mim</h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="about-content padd-15">
+                            <div class="row">
+                                <div class="about-text padd-15">
+                                    <h3>Sou Gabriel Santos e <span>Dev Full Stack</span></h3>
+                                    <p>Tenho mais de 4 anos de experiência na área de Tecnologia da Informação, atuando
+                                        em diversas frentes que vão desde Business Intelligence (BI) até o
+                                        desenvolvimento de software. Já atuei como desenvolvedor back-end, front-end e,
+                                        atualmente, trabalho como desenvolvedor full stack, entregando soluções
+                                        completas e funcionais.
+                                        Também atuo com manipulação de dados no Protheus, utilizando SQL Server para
+                                        realizar integrações, consultas e otimizações que garantem a eficiência dos
+                                        processos corporativos.
+                                        Minha trajetória me permitiu desenvolver uma visão ampla e estratégica sobre
+                                        tecnologia, unindo análise de dados, lógica de programação e design de
+                                        interfaces para criar aplicações robustas, escaláveis e centradas na experiência
+                                        do usuário.
+                                        Sou movido por desafios e aprendizado contínuo. Estou sempre em busca de
+                                        inovação, acompanhando as tendências do mercado e me aprofundando em novas
+                                        tecnologias para entregar resultados que realmente fazem a diferença.</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="personal-info padd-15">
+                                    <div class="row">
+                                        <div class="info-item padd-15">
+                                            <p>Birthday: <span>17 Abr 2001</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Idade: <span>24</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Website:
+                                                <span>https://return-gabriel.github.io/portfolio.GitHub.io/#about</span>
+                                            </p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Email: <span>gabriel.santos@chamae.com.br</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Degree: <span>Pleno</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Phone: <span>+11 97800-1818</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>City: <span>São Paulo</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Freelance: <span>Available</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skills padd-15">
+                                    <div class="row">
+                                        <div class="skill-item padd-15">
+                                            <h5>Desenvolvimento Web - C# / ASP.NET Core / ASP.NET MVC / HTTPS / SSL /
+                                                Postman / Git...</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent="75"></div>
+                                                <div class="skill-percent">75%</div>
+                                            </div>
+                                        </div>
+
+
+                                         <div class="skill-item padd-15">
+                                            <h5>Desenvolvimento Desktop -C# / VB.NET / .NET Framework / .NET Core / .NET
+                                                6+ / WinForms / Clean Code / Serialização de dados: JSON, XML...</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent="85"></div>
+                                                <div class="skill-percent">85%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-item padd-15">
+                                            <h5>SQL - SERVER - DML/ DDL / Integrações e Ferramentas/ Modelagem de Dados
+                                                / Consultas e Manipulação de Dados / Procedures e Funções...</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent="80"></div>
+                                                <div class="skill-percent">80%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-item padd-15">
+                                            <h5>HTML5/ CSS3 / Js / jQuery/ UX/UI Design / APIs / Figma / SVG / CSS
+                                                Grid/Flexbox /Adobe XD / SEO / Web Apps / Controle de Versão (Git)...
+                                            </h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent="80"></div>
+                                                <div class="skill-percent">80%</div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item padd-15">
+                                            <h5>T&D, PDI , Liderança Estratégica,Ética Empresarial, Tomada de Decisão...
+                                            </h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent ="65"></div>
+                                                <div class="skill-percent">65%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="Anthony info-member">
+            <section class="" id="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2>Sobre mim</h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="about-content padd-15">
+                            <div class="row">
+                                <div class="about-text padd-15">
+                                    <h3>Sou Anthony Silva e <span>Engenheiro de Dados</span></h3>
+                                    <p>Sou um profissional apaixonado por tecnologia, sempre em busca de evolução
+                                        constante e aprendizado contínuo. Tenho foco no desenvolvimento de sistemas e
+                                        bancos de dados, com experiência em projetar soluções funcionais, eficientes e
+                                        alinhadas às necessidades reais dos usuários. Estou continuamente explorando
+                                        novas linguagens, ferramentas e boas práticas para aprimorar minha visão técnica
+                                        e minha capacidade de resolver problemas de forma ágil e precisa.</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="personal-info padd-15">
+                                    <div class="row">
+                                        <div class="info-item padd-15">
+                                            <p>Birthday: <span>09 Set 2002</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Idade: <span>22</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Website: <span>---//----</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Email: <span>anthony.silva@chamae.com.br</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Degree: <span>Trainee</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Phone: <span>+55 11 96492-9633</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>City: <span>São Paulo</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Freelance: <span>Available</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skills padd-15">
+                                    <div class="row">
+                                        <div class="skill-item padd-15">
+                                            <h5>BD</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 30"></div>
+                                                <div class="skill-percent">30%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-item padd-15">
+                                            <h5>Excel</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 60"></div>
+                                                <div class="skill-percent">60%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-item padd-15">
+                                            <h5>Fluxograma</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 80"></div>
+                                                <div class="skill-percent">80%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-item padd-15">
+                                            <h5>Habilidades analiticas</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 75"></div>
+                                                <div class="skill-percent">75%</div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item padd-15">
+                                            <h5>Gestao de processos</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 80"></div>
+                                                <div class="skill-percent">80%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="Jonathan info-member">
+            <section class="" id="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2>Sobre mim</h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="about-content padd-15">
+                            <div class="row">
+                                <div class="about-text padd-15">
+                                    <h3>Sou Jonathan Oliveira e <span>DBA</span></h3>
+                                    <p>CMe chamo Jonathan, trabalho como Analista de Compras, focado, organizado, sempre
+                                        buscando aprimorar meus conhecimentos.</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="personal-info padd-15">
+                                    <div class="row">
+                                        <div class="info-item padd-15">
+                                            <p>Birthday: <span>23 Jan 1998</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Idade: <span>27</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Website: <span>---//----</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Email: <span>Jonathan.oliveira@chamae.com.br</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Degree: <span>Trainee</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Phone: <span>+55 11 99932-7179</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>City: <span>São Paulo</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Freelance: <span>Available</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skills padd-15">
+                                    <div class="row">
+                                        <div class="skill-item padd-15">
+                                            <h5>Excel</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 80"></div>
+                                                <div class="skill-percent">80%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-item padd-15">
+                                            <h5>ERP Compras - ERIS</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 100"></div>
+                                                <div class="skill-percent">50%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-item padd-15">
+                                            <h5>ERP Vendas - ERIS</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 100"></div>
+                                                <div class="skill-percent">100%</div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item padd-15">
+                                            <h5>ERP Expedicao - ERIS</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 100"></div>
+                                                <div class="skill-percent">100%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="Petherson info-member">
+            <section class="" id="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2>Sobre mim</h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="about-content padd-15">
+                            <div class="row">
+                                <div class="about-text padd-15">
+                                    <h3>Sou Petherson Oliveira e <span>Especialista DevOps </span></h3>
+                                    <p>Desenvolvedor Web Full Stack com mais de 5 anos de experiência em automação de
+                                        processos, integrações de sistemas e projetos de machine learning. Atuação em
+                                        ambientes de nuvem (Google Cloud, AWS). Atualmente na Salon Line Brasil,
+                                        desenvolvendo aplicações web (PHP, JavaScript, React), implementando automações
+                                        (Python) e integrações via APIs (Node.js).</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="personal-info padd-15">
+                                    <div class="row">
+                                        <div class="info-item padd-15">
+                                            <p>Birthday: <span>07 Jul 2002</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Idade: <span>22</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Website: <span>---//----</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Email: <span>Petherson.oliveira@chamae.com.br</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Degree: <span>Dev Jr</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Phone: <span>+11 97972-4242</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>City: <span>São Paulo</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Freelance: <span>Available</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skills padd-15">
+                                    <div class="row">
+                                        <div class="skill-item padd-15">
+                                            <h5>React,Js</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 65"></div>
+                                                <div class="skill-percent">65%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-item padd-15">
+                                            <h5>PHP,Node.js</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 80"></div>
+                                                <div class="skill-percent">80%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-item padd-15">
+                                            <h5>Apis</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 80"></div>
+                                                <div class="skill-percent">80%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-item padd-15">
+                                            <h5>Automação de processos</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 85"></div>
+                                                <div class="skill-percent">85%</div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item padd-15">
+                                            <h5>Machine Learning</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 55"></div>
+                                                <div class="skill-percent">55%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="BrunnoVianna info-member">
+            <section class="" id="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2>Sobre mim</h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="about-content padd-15">
+                            <div class="row">
+                                <div class="about-text padd-15">
+                                    <h3>Sou Brunno Vianna e <span>Devensolvedor BackEnd</span></h3>
+                                    <p>Sou um amante da tecnologia, sempre ligado nas novidades e em como elas podem
+                                        transformar o nosso dia a dia. Gosto de aprender, explorar ferramentas e
+                                        entender na prática como a tecnologia pode facilitar processos e resolver
+                                        problemas. Tenho facilidade para me adaptar, trabalhar em equipe e encarar
+                                        desafios com vontade de evoluir e contribuir. Estou sempre em busca de crescer e
+                                        fazer a diferença com aquilo que sei e com tudo o que ainda quero aprender.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="personal-info padd-15">
+                                    <div class="row">
+                                        <div class="info-item padd-15">
+                                            <p>Birthday: <span>01 Mai 2004</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Idade: <span>21</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Website: <span>---//----</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Email: <span>brunno.vianna@chamae.com.br</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Degree: <span>Trainee</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Phone: <span>+55 11 96725-8401</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>City: <span>São Paulo</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Freelance: <span>Available</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skills padd-15">
+                                    <div class="row">
+                                        <div class="skill-item padd-15">
+                                            <h5>Redes </h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 50"></div>
+                                                <div class="skill-percent">50%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-item padd-15">
+                                            <h5>Excel </h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 70"></div>
+                                                <div class="skill-percent">70%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-item padd-15">
+                                            <h5>Resolução de Problemas</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 80"></div>
+                                                <div class="skill-percent">80%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-item padd-15">
+                                            <h5>Pensamento Analítico</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 80"></div>
+                                                <div class="skill-percent">80%</div>
+                                            </div>
+                                        </div>
+                                        <div class="skill-item padd-15">
+                                            <h5>Visão Estratégica</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 60"></div>
+                                                <div class="skill-percent">60%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="Guilherme info-member">
+            <section class="" id="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="section-title padd-15">
+                            <h2>Sobre mim</h2>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="about-content padd-15">
+                            <div class="row">
+                                <div class="about-text padd-15">
+                                    <h3>Sou Guilherme Souza e <span> Qualidade de Software (QA)</span></h3>
+                                    <p>Profissional de tecnologia com experiência em suporte técnico, organização de
+                                        dados e operação de sistemas. Atuo com foco em infraestrutura de TI, atendimento
+                                        a chamados voltados exclusivamente à área técnica.
+                                        Tenho conhecimentos em redes TCP/IP, Wireshark, configuração básica de
+                                        roteadores e switches, além de programação em C, C++, e fundamentos em C#.
+                                        Também possuo experiência com padronização de cadastros, e controle de materiais
+                                        e notas fiscais.</p>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="personal-info padd-15">
+                                    <div class="row">
+                                        <div class="info-item padd-15">
+                                            <p>Birthday: <span>22 Jun 2004</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Idade: <span>20</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Website: <span>---//----</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Email: <span>Guilherme.souza@chamae.com.br</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Degree: <span>Trainee</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Phone: <span>+55 11 99414-6441</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>City: <span>São Paulo</span></p>
+                                        </div>
+
+                                        <div class="info-item padd-15">
+                                            <p>Freelance: <span>Available</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="skills padd-15">
+                                    <div class="row">
+                                        <div class="skill-item padd-15">
+                                            <h5>Wireshark </h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 25"></div>
+                                                <div class="skill-percent">25%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-item padd-15">
+                                            <h5>Burpsuit</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 60"></div>
+                                                <div class="skill-percent">60%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-item padd-15">
+                                            <h5>Linux </h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 65"></div>
+                                                <div class="skill-percent">65%</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="skill-item padd-15">
+                                            <h5>C#</h5>
+                                            <div class="progress">
+                                                <div class="progress-in" data-percent =" 25"></div>
+                                                <div class="skill-percent">25%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <div class="footer-top">
+                <div class="container">
+                    <div class="footer-brand">
+                        <a href="#" class="logo"> <img src="Imagens/LogoChamae.png" alt="Logo Chamae" width="200">
+                            <alt="Funel logo">
+                        </a>
+
+                        <p class="footer-text">Siga-nos em</p>
+
+                        <ul class="social-list">
+                            <li><a href="https://github.com/Return-Gabriel" class="social-link"><ion-icon
+                                        name="logo-github"></ion-icon></a></li>
+                            <li><a href="https://instagram.com/_galvvesz" class="social-link"><ion-icon
+                                        name="logo-instagram"></ion-icon></a></li>
+                            <li><a href="https://youtube.com/c/alvesgamer" class="social-link"><ion-icon
+                                        name="logo-youtube"></ion-icon></a></li>
+                            <li><a href="#" class="social-link"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-link-box">
+                        <ul class="footer-link-list">
+                            <li>
+                                <h3 class="h4 link-title">Empresa</h3>
+                            </li>
+                            <li><a href="#" class="footer-link">Sobre nós</a></li>
+                            <li><a href="#" class="footer-link">Características</a></li>
+                            <li><a href="#" class="footer-link">Preços</a></li>
+                        </ul>
+
+                        <ul class="footer-link-list">
+                            <li>
+                                <h3 class="h4 link-title">Produtos</h3>
+                            </li>
+                            <li><a href="#" class="footer-link">Blogue</a></li>
+                            <li><a href="#" class="footer-link">Central de Ajuda</a></li>
+                            <li><a href="#" class="footer-link">Contato</a></li>
+                        </ul>
+
+                        <ul class="footer-link-list">
+                            <li>
+                                <h3 class="h4 link-title">Recursos</h3>
+                            </li>
+                            <li><a href="#" class="footer-link">Perguntas frequentes</a></li>
+                            <li><a href="#" class="footer-link">Depoimento</a></li>
+                            <li><a href="#" class="footer-link">Termos e Condições</a></li>
+                        </ul>
+
+                        <ul class="footer-link-list">
+                            <li>
+                                <h3 class="h4 link-title">Relevante</h3>
+                            </li>
+                            <li><a href="#" class="footer-link">Produtos</a></li>
+                            <li><a href="#" class="footer-link">Clientes</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p class="copyright">&copy; 2025 GS CODE Todos os direitos reservados</p>
+            </div>
+        </footer>
+
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const cards = document.querySelectorAll(".carousel-track .card");
+
+                const memberClasses = [
+                    "Gabriel",
+                    "Anthony",
+                    "Jonathan",
+                    "Petherson",
+                    "BrunnoVianna",
+                    "Guilherme"
+                ];
+
+                let currentIndex = 0; // Índice atual para o botão
+
+                // Função para mostrar a div do membro atual
+                function showMember(index) {
+                    const selectedClass = memberClasses[index];
+                    const selectedDiv = document.querySelector(`.${selectedClass}`);
+
+                    // Oculta todas as divs
+                    document.querySelectorAll(".info-member").forEach(div => {
+                        div.style.display = "none";
+                    });
+
+                    // Mostra a div correspondente
+                    if (selectedDiv) {
+                        selectedDiv.style.display = "block";
+                    }
+                }
+
+                // Ação ao clicar nos cards
+                cards.forEach((card, index) => {
+                    card.addEventListener("click", () => {
+                        currentIndex = index;
+                        showMember(currentIndex);
+                    });
+                });
+
+                // Ação ao clicar no botão de navegação
+                const rightButton = document.querySelector(".nav-arrow.right");
+                if (rightButton) {
+                    rightButton.addEventListener("click", () => {
+                        currentIndex = (currentIndex + 1) % memberClasses.length;
+                        showMember(currentIndex);
+                    });
+                }
+            });
+
+            const teamMembers = [
+                { name: "Gabriel Santos", role: "CIO - Diretor de TI" },
+                { name: "Anthony Silva", role: "CTO - Diretor Técnico" },
+                { name: "Jonathan Oliveira", role: "Gerente de Projetos de TI" },
+                { name: "Petherson Oliveira", role: "Gerente de Sistemas" },
+                { name: "Brunno Vianna", role: "Gerente de Segurança da Informação" },
+                { name: "Guilherme Souza", role: "Gerente de Infraestrutura" }
+            ];
+
+            const cards = document.querySelectorAll(".card");
+            const dots = document.querySelectorAll(".dot");
+            const memberName = document.querySelector(".member-name");
+            const memberRole = document.querySelector(".member-role");
+            const leftArrow = document.querySelector(".nav-arrow.left");
+            const rightArrow = document.querySelector(".nav-arrow.right");
+            let currentIndex = 0;
+            let isAnimating = false;
+
+            function updateCarousel(newIndex) {
+                if (isAnimating) return;
+                isAnimating = true;
+
+                currentIndex = (newIndex + cards.length) % cards.length;
+
+                cards.forEach((card, i) => {
+                    const offset = (i - currentIndex + cards.length) % cards.length;
+
+                    card.classList.remove(
+                        "center",
+                        "left-1",
+                        "left-2",
+                        "right-1",
+                        "right-2",
+                        "hidden"
+                    );
+
+                    if (offset === 0) {
+                        card.classList.add("center");
+                    } else if (offset === 1) {
+                        card.classList.add("right-1");
+                    } else if (offset === 2) {
+                        card.classList.add("right-2");
+                    } else if (offset === cards.length - 1) {
+                        card.classList.add("left-1");
+                    } else if (offset === cards.length - 2) {
+                        card.classList.add("left-2");
+                    } else {
+                        card.classList.add("hidden");
+                    }
+                });
+
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle("active", i === currentIndex);
+                });
+
+                memberName.style.opacity = "0";
+                memberRole.style.opacity = "0";
+
+                setTimeout(() => {
+                    memberName.textContent = teamMembers[currentIndex].name;
+                    memberRole.textContent = teamMembers[currentIndex].role;
+                    memberName.style.opacity = "1";
+                    memberRole.style.opacity = "1";
+                }, 300);
+
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 800);
+            }
+
+            leftArrow.addEventListener("click", () => {
+                updateCarousel(currentIndex - 1);
+            });
+
+            rightArrow.addEventListener("click", () => {
+                updateCarousel(currentIndex + 1);
+            });
+
+            dots.forEach((dot, i) => {
+                dot.addEventListener("click", () => {
+                    updateCarousel(i);
+                });
+            });
+
+            cards.forEach((card, i) => {
+                card.addEventListener("click", () => {
+                    updateCarousel(i);
+                });
+            });
+
+            document.addEventListener("keydown", (e) => {
+                if (e.key === "ArrowLeft") {
+                    updateCarousel(currentIndex - 1);
+                } else if (e.key === "ArrowRight") {
+                    updateCarousel(currentIndex + 1);
+                }
+            });
+
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            document.addEventListener("touchstart", (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+
+            document.addEventListener("touchend", (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        updateCarousel(currentIndex + 1);
+                    } else {
+                        updateCarousel(currentIndex - 1);
+                    }
+                }
+            }
+
+            updateCarousel(0);
+
+
+
+            document.addEventListener("DOMContentLoaded", function () {
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const progressIn = entry.target;
+                            const percent = progressIn.getAttribute('data-percent');
+                            progressIn.style.width = percent + '%';
+
+                            // Atualiza o número no .skill-percent
+                            const skillPercent = progressIn.nextElementSibling;
+                            let current = 0;
+                            const target = parseInt(percent);
+                            const interval = setInterval(() => {
+                                if (current >= target) {
+                                    clearInterval(interval);
+                                } else {
+                                    current++;
+                                    skillPercent.textContent = current + '%';
+                                }
+                            }, 10);
+
+                            // Depois de animado, para de observar
+                            observer.unobserve(progressIn);
+                        }
+                    });
+                }, {
+                    threshold: 0.1 // Ativa quando 50% da barra estiver visível
+                });
+
+                // Observa todas as barras
+                document.querySelectorAll('.progress-in').forEach(bar => {
+                    observer.observe(bar);
+                });
+            });
+        </script> 
